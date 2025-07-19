@@ -4,3 +4,12 @@ cmake-build-debug
 .idea
 base/cache
 build
+libcron/
+quickjspp/
+subconverter/
+toml11/
+yaml-cpp/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake

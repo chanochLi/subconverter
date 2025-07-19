@@ -1,6 +1,6 @@
 FROM alpine:3.16 AS builder
-LABEL maintainer="tindy.it@gmail.com"
-ARG THREADS="4"
+LABEL maintainer="kujou@foxmail.com"
+ARG THREADS="2"
 ARG SHA=""
 
 # build minimized
@@ -35,7 +35,7 @@ RUN set -xe && \
     cmake -DCMAKE_CXX_STANDARD=11 . && \
     make install -j $THREADS && \
     cd .. && \
-    git clone https://github.com/tindy2013/subconverter --depth=1 && \
+    git clone https://github.com/chanochLi/subconverter.git --depth=1 && \
     cd subconverter && \
     [ -n "$SHA" ] && sed -i 's/\(v[0-9]\.[0-9]\.[0-9]\)/\1-'"$SHA"'/' src/version.h;\
     python3 -m ensurepip && \
@@ -46,7 +46,7 @@ RUN set -xe && \
 
 # build final image
 FROM alpine:3.16
-LABEL maintainer="tindy.it@gmail.com"
+LABEL maintainer="kujou@foxmail.com"
 
 RUN apk add --no-cache --virtual subconverter-deps pcre2 libcurl yaml-cpp
 
